@@ -65,6 +65,31 @@ class ClientAdmin(TenantAdminMixin, admin.ModelAdmin):
         list_display = ('name', 'paid_until')
 ```
 
+## Configurar os APPS
+```
+SHARED_APPS = (
+    'django_tenants',  # mandatory
+    'customers', # you must list the app where your tenant model resides in
+
+    'django.contrib.contenttypes',
+
+    # everything below here is optional
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
+)
+
+TENANT_APPS = (
+    # your tenant-specific apps
+    'myapp.hotels',
+    'myapp.houses',
+)
+
+INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
+```
+
 ## Adicione o arquivo docker-compose.yml na pasta
 ```
 version: '3.8'
