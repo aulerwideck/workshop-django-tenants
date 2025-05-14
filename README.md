@@ -1,6 +1,9 @@
 # workshop-django-tenants
 
-# Iniciar novo projeto
+## Instale o django e demais pacotes
+pip install django django-tenants psycopg
+
+## Iniciar novo projeto
 django-admin startproject projeto_tenant
 
 #Configure o banco de dados em setting.py
@@ -21,7 +24,7 @@ DATABASE_ROUTERS = (
     'django_tenants.routers.TenantSyncRouter',
 )
 
-# Adicione o arquivo docker-compose.yml na pasta
+## Adicione o arquivo docker-compose.yml na pasta
 ```
 version: '3.8'
 
@@ -42,15 +45,14 @@ volumes:
   postgres_data:
 ```
 
-# Adicione o middleware
+## Adicione o middleware
 ```
 MIDDLEWARE = (
     'django_tenants.middleware.main.TenantMainMiddleware',
     #...
 )
 ```
-# Instale o django-tenants
-pip install django-tenants psycopg
+
 
 # Crie um novo APP
 python3 manage.py startapp clientes
