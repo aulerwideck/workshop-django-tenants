@@ -53,18 +53,6 @@ class Domain(DomainMixin):
     pass
 ```
 
-## Configurar o admin
-```
-from django.contrib import admin
-from django_tenants.admin import TenantAdminMixin
-
-from myapp.models import Client
-
-@admin.register(Client)
-class ClientAdmin(TenantAdminMixin, admin.ModelAdmin):
-        list_display = ('name', 'paid_until')
-```
-
 ## Configurar os APPS
 ```
 SHARED_APPS = (
