@@ -4,6 +4,7 @@
 django-admin startproject projeto_tenant
 
 #Configure o banco de dados em setting.py
+```
 DATABASES = {
     'default': {
         'ENGINE': 'django_tenants.postgresql_backend',
@@ -14,12 +15,14 @@ DATABASES = {
         'PORT': '5433',
     }
 }
+```
 
 DATABASE_ROUTERS = (
     'django_tenants.routers.TenantSyncRouter',
 )
 
 # Adicione o arquivo docker-compose.yml na pasta
+```
 version: '3.8'
 
 services:
@@ -37,14 +40,15 @@ services:
 
 volumes:
   postgres_data:
-
+```
 
 # Adicione o middleware
+```
 MIDDLEWARE = (
     'django_tenants.middleware.main.TenantMainMiddleware',
     #...
 )
-
+```
 # Instale o django-tenants
 pip install django-tenants psycopg
 
