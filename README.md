@@ -32,9 +32,38 @@ MIDDLEWARE = (
 )
 ```
 
+## Crie um novo APP
+python3 manage.py startapp customers
 
-# Crie um novo APP
-python3 manage.py startapp clientes
+## Criar o modelo "Client"
+```
+from django.db import models
+from django_tenants.models import TenantMixin, DomainMixin
+
+class Client(TenantMixin):
+    name = models.CharField(max_length=100)
+    paid_until =  models.DateField()
+    on_trial = models.BooleanField()
+    created_on = models.DateField(auto_now_add=True)
+
+    # default true, schema will be automatically created and synced when it is saved
+    auto_create_schema = True
+
+class Domain(DomainMixin):
+    pass
+```
+
+## Configurar o admin
+```
+from django.contrib import admin
+from django_tenants.admin import TenantAdminMixin
+
+from myapp.models import Client
+
+@admin.register(Client)
+class ClientAdmin(TenantAdminMixin, admin.ModelAdmin):
+        list_display = ('name', 'paid_until')
+```
 
 ## Adicione o arquivo docker-compose.yml na pasta
 ```
