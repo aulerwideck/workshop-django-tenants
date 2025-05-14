@@ -117,3 +117,8 @@ services:
 volumes:
   postgres_data:
 ```
+
+## Rodar o container
+```
+docker compose up -d
+```
