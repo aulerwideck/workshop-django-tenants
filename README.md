@@ -122,3 +122,9 @@ volumes:
 ```
 docker compose up -d
 ```
+
+## Gerar as migrations
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
