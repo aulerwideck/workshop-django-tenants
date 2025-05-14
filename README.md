@@ -18,11 +18,11 @@ DATABASES = {
         'PORT': '5433',
     }
 }
-```
 
 DATABASE_ROUTERS = (
     'django_tenants.routers.TenantSyncRouter',
 )
+```
 
 ## Adicione o arquivo docker-compose.yml na pasta
 ```
