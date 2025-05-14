@@ -90,6 +90,13 @@ TENANT_APPS = (
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 ```
 
+## Configurar os modelos usados pelo Django-tenants
+```
+TENANT_MODEL = "customers.Client" # app.Model
+
+TENANT_DOMAIN_MODEL = "customers.Domain"  # app.Model
+```
+
 ## Adicione o arquivo docker-compose.yml na pasta
 ```
 version: '3.8'
