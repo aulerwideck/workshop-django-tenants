@@ -24,6 +24,18 @@ DATABASE_ROUTERS = (
 )
 ```
 
+## Adicione o middleware
+```
+MIDDLEWARE = (
+    'django_tenants.middleware.main.TenantMainMiddleware',
+    #...
+)
+```
+
+
+# Crie um novo APP
+python3 manage.py startapp clientes
+
 ## Adicione o arquivo docker-compose.yml na pasta
 ```
 version: '3.8'
@@ -44,15 +56,3 @@ services:
 volumes:
   postgres_data:
 ```
-
-## Adicione o middleware
-```
-MIDDLEWARE = (
-    'django_tenants.middleware.main.TenantMainMiddleware',
-    #...
-)
-```
-
-
-# Crie um novo APP
-python3 manage.py startapp clientes
