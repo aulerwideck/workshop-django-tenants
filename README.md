@@ -6,7 +6,7 @@ pip install django django-tenants psycopg
 ## Iniciar novo projeto
 django-admin startproject projeto_tenant
 
-#Configure o banco de dados em setting.py
+## Configure o banco de dados em setting.py
 ```
 DATABASES = {
     'default': {
