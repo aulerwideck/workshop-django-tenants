@@ -167,3 +167,62 @@ domain.is_primary = True
 domain.save()
 ```
 
+
+# Separando as informações por Tenant
+
+## Configurando um novo app
+python manage.py startapp core
+
+## Configure o app
+```
+TENANT_APPS = (
+    ...,
+    'core',
+)
+```
+
+## View para exibir o tenant
+Em core/views.py:
+```
+from django.shortcuts import render
+from django_tenants.utils import get_tenant_model
+
+def tenant_info(request):
+    tenant = request.tenant
+    return render(request, 'core/tenant_info.html', {'tenant_name': tenant.name})
+```
+
+## Template
+Crie o template: core/templates/core/tenant_info.html:
+```
+from django.shortcuts import render
+from django_tenants.utils import get_tenant_model
+
+def tenant_info(request):
+    tenant = request.tenant
+    return render(request, 'core/tenant_info.html', {'tenant_name': tenant.name})
+```
+
+## URL
+No core/urls.py (crie este arquivo se ainda não existir):
+```
+from django.urls import path
+from .views import tenant_info
+
+urlpatterns = [
+    path('', tenant_info, name='tenant_info'),
+]
+
+```
+E em projeto_tenant/urls.py:
+```
+from django.urls import path, include
+
+urlpatterns = [
+    path('', include('core.urls')),
+]
+```
+
+## Acesse os dominios:
+http://localhost:8000/
+http://secundario.localhost:8000/
