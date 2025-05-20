@@ -37,15 +37,9 @@ python3 manage.py startapp customers
 
 ## Configurando um novo app "CORE"
 Será utilizado posteriormente 
+
 ```python manage.py startapp core```
 
-## Configure o app
-```
-TENANT_APPS = (
-    ...,
-    'core',
-)
-```
 
 ## Criar o modelo "Client"
 ```
