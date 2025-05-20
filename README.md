@@ -122,45 +122,6 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-## Criar o tenant principal
-```
-from customers.models import Client, Domain
-
-# create your public tenant
-tenant = Client(schema_name='public',
-                name='Primario',
-                paid_until='2025-12-31',
-                on_trial=False)
-tenant.save()
-
-# Adicionar um domínio para acessar o tenant principal
-domain = Domain()
-domain.domain = 'teste.localhost'
-domain.tenant = tenant
-domain.is_primary = True
-domain.save()
-```
-
-## Criar um novo tenant
-```
-from customers.models import Client, Domain
-
-# create your public tenant
-tenant = Client(schema_name='secundario',
-                name='Secundario',
-                paid_until='2025-12-31',
-                on_trial=False)
-tenant.save()
-
-# Adicionar um domínio para acessar o tenant principal
-domain = Domain()
-domain.domain = 'secundario.localhost'
-domain.tenant = tenant
-domain.is_primary = True
-domain.save()
-```
-
-
 # Separando as informações por Tenant
 
 ## View para exibir o tenant
@@ -203,6 +164,45 @@ from django.urls import path, include
 urlpatterns = [
     path('', include('core.urls')),
 ]
+```
+
+
+## Criar o tenant principal
+```
+from customers.models import Client, Domain
+
+# create your public tenant
+tenant = Client(schema_name='public',
+                name='Primario',
+                paid_until='2025-12-31',
+                on_trial=False)
+tenant.save()
+
+# Adicionar um domínio para acessar o tenant principal
+domain = Domain()
+domain.domain = 'teste.localhost'
+domain.tenant = tenant
+domain.is_primary = True
+domain.save()
+```
+
+## Criar um novo tenant
+```
+from customers.models import Client, Domain
+
+# create your public tenant
+tenant = Client(schema_name='secundario',
+                name='Secundario',
+                paid_until='2025-12-31',
+                on_trial=False)
+tenant.save()
+
+# Adicionar um domínio para acessar o tenant principal
+domain = Domain()
+domain.domain = 'secundario.localhost'
+domain.tenant = tenant
+domain.is_primary = True
+domain.save()
 ```
 
 ## Acesse os dominios:
