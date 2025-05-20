@@ -138,6 +138,19 @@ def tenant_info(request):
 ## Template
 Crie o template: core/templates/core/tenant_info.html:
 ```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tenant Info</title>
+</head>
+<body>
+    <h1>Bem-vindo ao tenant: {{ tenant_name }}</h1>
+</body>
+</html>
+```
+
+## Configure o views.py
+```
 from django.shortcuts import render
 from django_tenants.utils import get_tenant_model
 
