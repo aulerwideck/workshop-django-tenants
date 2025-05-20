@@ -35,6 +35,18 @@ MIDDLEWARE = (
 ## Crie um novo APP
 python3 manage.py startapp customers
 
+## Configurando um novo app "CORE"
+Será utilizado posteriormente 
+```python manage.py startapp core```
+
+## Configure o app
+```
+TENANT_APPS = (
+    ...,
+    'core',
+)
+```
+
 ## Criar o modelo "Client"
 ```
 from django.db import models
@@ -71,6 +83,7 @@ SHARED_APPS = (
 
 TENANT_APPS = (
     # your tenant-specific apps
+    'core'
 )
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
@@ -155,17 +168,6 @@ domain.save()
 
 
 # Separando as informações por Tenant
-
-## Configurando um novo app
-python manage.py startapp core
-
-## Configure o app
-```
-TENANT_APPS = (
-    ...,
-    'core',
-)
-```
 
 ## View para exibir o tenant
 Em core/views.py:
